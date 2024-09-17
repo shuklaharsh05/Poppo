@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,body{
+  scroll-behavior: smooth;
+  user-select: none;
+}
+        
+        /* Smooth transition for the mobile menu */
+        .mobile-menu {
+            transition: transform 0.8s ease-in-out, opacity 0.7s ease-in-out;
+        }
+
+        .mobile-menu.hidden {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .mobile-menu.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+body{
+  font-family: "Outfit", sans-serif;
+}
+
+  .glass{
+  
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  
+  }
+  
+  /* blog Css */
+  
+  .blog-container{
+    padding:5%;
+    width: 70%;
+    background-color: aliceblue;
+  }
+  .toc-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+  }
+  
+  .toc-title {
+    color: #a64ca6;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 20px;
+  }
+  
+  .toc-list {
+    padding-left: 0;
+    margin: 20px;
+  }
+  
+  .toc-list ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    background-color: white;
+  }
+  
+  .toc-list ul li {
+    padding-bottom: 5px;
+    font-size: 16px;
+  }
+  
+  .toc-sub-list{
+    background-color: white;
+  }
+  .blog{
+    padding: 0 25px;
+  }
+  .blog h2{
+    padding: 25px 0 0 0 ;
+    scroll-margin-top: 4rem ;
+    font-size: 30px;
+    font-weight: 700;
+  }
+  .blog h3{
+    padding: 25px 0 0 0 ;
+    font-size: 22px;
+    scroll-margin-top: 4rem ;
+    font-weight: 600;
+  }
+  .blog h4{
+    padding: 10px 0 10px 0 ;
+    font-size: 18px;
+    scroll-margin-top: 4rem ;
+    font-weight: 600;
+  }
+  .blog p,li{
+    font-size: 18px;
+  }
+  .host-img{
+    width: 75%;
+  }
+  
+  
+  .banner{
+    background-image: url(./Images/new-img/benefits-bg.webp);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+  }
+  
+  .content-section {
+    padding: 100px 0px;
+    font-family: 'outfit';
+  }
+  
+  .content-div {
+    padding: 0 20px;
+    background-color: transparent;
+    color: white;
+  }
+  
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    flex: 1;
+    padding: 0 5%;
+  }
+  
+  .grid-item {
+    position: relative ;
+    padding: 0px 20px;
+    background-color: transparent;
+    color: white;
+  }
+  .number{
+    font-size: 140px;
+    font-weight: 800;
+    color: #df48d8;
+  }
+  .text{
+    position: absolute;
+    width: 85%;
+    top: 85px;
+    left: 55px;
+  }
+  .grid-item h3,p{
+    margin: 0;
+  }
+
+  .transition-colors {
+    transition: background-color 0.3s ease;
+  }
+  
+  @media only screen and (max-width:1024px) {
+    .blog-container{
+      width: 80%;
+    }
+    .blog h2{
+      padding: 20px 0 10px 0 ;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .blog h3{
+      padding: 10px 0 5px 0 ;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .blog h4{
+      padding: 7px 0 7px 0  ;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+  
+  @media only screen and (max-width:768px) {
+    .blog{
+      padding: 0 10px;
+    }
+    .blog-container{
+      width: 90%;
+    }
+    .content-section {
+      flex-direction: column;
+      align-items: stretch;
+  }
+    .grid-container {
+      grid-template-columns: 1fr;
+  }
+  }
+  
+  @media only screen and (max-width:450px) {
+    .blog{
+      padding: 0 2px;
+    }
+    .blog-container{
+      width: 100%;
+    }
+    .blog p,li{
+      font-size: 15px;
+    }
+    .blog h2{
+      padding: 20px 0 10px 0 ;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .blog h3{
+      padding: 10px 0 5px 0 ;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+    .blog h4{
+      padding: 7px 0 7px 0  ;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+    .toc-list ul li {
+      padding-bottom: 5px;
+      font-size: 12px;
+  }
+  .content-section {
+    padding: 20px 0px;
+    font-family: 'outfit';
+  }
+  
+  }
+  
+  
+    
+  
+  
