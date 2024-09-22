@@ -46,7 +46,7 @@ scrollTopBtn.onclick = () => {
 // });
 
 // Block Common Keyboard Shortcuts
-//document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', function (event) {
     // F12 key
     if (event.key === "F12") {
         event.preventDefault();
