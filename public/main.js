@@ -5,26 +5,24 @@ const logo = document.getElementById('logo');
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 const navbar = document.getElementById('header');
 
-// Toggle mobile menu
-menuToggle.addEventListener('click', () => {
-    mobileMenu.classList.add('mt-[0]');
-    menuToggle.classList.add('hidden');
-    logo.classList.add('hidden');
-});
+// Function to toggle mobile menu visibility
+const toggleMobileMenu = (isOpen) => {
+    mobileMenu.classList.toggle('mt-[0]', isOpen);
+    menuToggle.classList.toggle('hidden', isOpen);
+    logo.classList.toggle('hidden', isOpen);
+};
 
-closeMenu.addEventListener('click', () => {
-    mobileMenu.classList.remove('mt-[0]');
-    menuToggle.classList.remove('hidden');
-    logo.classList.remove('hidden');
-});
+// Event listeners for menu toggling
+menuToggle.addEventListener('click', () => toggleMobileMenu(true));
+closeMenu.addEventListener('click', () => toggleMobileMenu(false));
 
-// Show "Scroll to Top" button when user scrolls down 20px
-window.onscroll = () => {
+// Function to handle scroll events
+const handleScroll = () => {
     const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
-    
-    // Toggle scroll top button
+
+    // Toggle scroll top button visibility
     scrollTopBtn.style.display = scrollPosition > 20 ? 'block' : 'none';
-    
+
     // Change navbar background on scroll
     if (scrollPosition > 50) {
         navbar.classList.remove('bg-transparent');
@@ -35,49 +33,42 @@ window.onscroll = () => {
     }
 };
 
+// Debounce function to optimize scroll handling
+const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};
+
+// Attach scroll event listener with debouncing
+window.addEventListener('scroll', debounce(handleScroll, 100));
+
 // Scroll to the top when the user clicks the button
 scrollTopBtn.onclick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 // Disable Right-Click
-//document.addEventListener('contextmenu', function (event) {
-//     event.preventDefault();
-// });
+document.addEventListener('contextmenu', event => event.preventDefault());
 
 // Block Common Keyboard Shortcuts
-document.addEventListener('keydown', function (event) {
-    // F12 key
-    if (event.key === "F12") {
-        event.preventDefault();
-    }
+document.addEventListener('keydown', event => {
+    const blockedKeys = [
+        { keys: ['F12'] },
+        { keys: ['I'], ctrl: true, shift: true },
+        { keys: ['J'], ctrl: true, shift: true },
+        { keys: ['U'], ctrl: true }
+    ];
 
-    // Ctrl+Shift+I (Inspect)
-    if (event.ctrlKey && event.shiftKey && event.key === "I") {
-        event.preventDefault();
-    }
-
-    // Ctrl+Shift+J (Console)
-    if (event.ctrlKey && event.shiftKey && event.key === "J") {
-        event.preventDefault();
-    }
-
-    // Ctrl+U (View Source)
-    if (event.ctrlKey && event.key === "U") {
-        event.preventDefault();
-    }
-// });
-
-// Disable Developer Tools Detection (Aggressive)
-function detectDevTools() {
-    const element = new Image();
-    Object.defineProperty(element, 'id', {
-        get: function () {
-            // Detected developer tools open
-            alert('Developer tools are open! Please close them.');
-            // You could also redirect the user or take another action here
+    blockedKeys.forEach(({ keys, ctrl, shift }) => {
+        if (keys.includes(event.key) && (ctrl ? event.ctrlKey : true) && (shift ? event.shiftKey : true)) {
+            event.preventDefault();
         }
     });
-}
-
-setInterval(detectDevTools, 1000); // Check every second
+});
