@@ -50,6 +50,11 @@ app.get('/blog/poppo-coin-seller', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', './blog/poppo-coin-seller.html'));
 });
 
+// Route to Best Live Streaming Apps Blog Page
+app.get('/blog/best-live-streaming-apps', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', './blog/best-live-streaming-apps.html'));
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
